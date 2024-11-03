@@ -68,5 +68,29 @@ namespace Gameplay
 		{
 			cell_view->initialize(cell_width, cell_height);
 		}
+
+		void CellController::openCell()
+		{
+			if (cell_model->getCellState() != CellState::FLAGGED)
+			{
+				cell_model->setCellState(CellState::OPEN);
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+			}
+		}
+
+		void CellController::flagCell()
+		{
+			switch (cell_model->getCellState())
+			{
+			case::Gameplay::Cell::CellState::FLAGGED:
+				cell_model->setCellState(CellState::HIDDEN);
+				break;
+			case::Gameplay::Cell::CellState::HIDDEN:
+				cell_model->setCellState(CellState::FLAGGED);
+				break;
+			}
+
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FLAG);
+		}
 	}
 }
