@@ -92,6 +92,22 @@ namespace Gameplay
 			}
 		}
 
+		void BoardController::processCellValue(sf::Vector2i cell_position)
+		{
+			switch (board[cell_position.x][cell_position.y]->getCellValue())
+			{
+			case::Gameplay::Cell::CellValue::EMPTY:
+				//processEmptyCell(cell_position); Yet to implement
+				break;
+			case::Gameplay::Cell::CellValue::MINE:
+				//processMineCell(cell_position); Yet to implement
+				break;
+			default:
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+				break;
+			}
+		}
+
 		void BoardController::deleteBoard()
 		{
 			for (int a = 0; a < number_of_rows; a++)

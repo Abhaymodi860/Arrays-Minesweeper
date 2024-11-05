@@ -32,6 +32,7 @@ namespace Gameplay
             void destroy();
             void resetBoard();
             void deleteBoard();
+            void processCellValue();
         };
     }
 }
